@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A calm, local-first space for communication and optional practice with a caregiver.">
+  <title>Fluent | Every way of communicating counts</title>
+  <script src="{{ url_for('static', filename='js/theme.js') }}"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/print.css') }}" media="print">
+  <script type="module" src="{{ url_for('static', filename='js/app.js') }}"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="Fluent home"><span class="brand-mark" aria-hidden="true">f.</span><span>fluent<span class="brand-subtitle">YOUR VOICE. YOUR WAY.</span></span></a>
+    <div class="header-actions"><span class="local-badge">On this device</span><button id="break-button" class="quiet-button">Take a break</button></div>
+  </header>
+  <nav class="main-nav" aria-label="Main sections">
+    <button data-page="board" aria-current="page">Communicate</button>
+    <button data-page="practice">Gentle practice</button>
+    <button data-page="caregiver">Caregiver</button>
+    <button data-page="writing">Writing space</button>
+    <button data-page="about">About &amp; safety</button>
+  </nav>
+  <main id="main" tabindex="-1">
+    <div id="loading" class="notice">Opening your space...</div>
+    <section id="page-board" aria-labelledby="board-title">
+      <div class="hero">
+        <div><p class="eyebrow">EVERY WAY OF COMMUNICATING COUNTS</p><h1 id="board-title">A little space.<br>A lot of ways to be heard.</h1><p class="hero-copy">Tap a card. Build a message. Or just take your time.<br>There is no wrong way to start.</p></div>
+        <aside class="welcome-card"><span class="eyebrow">RIGHT HERE, RIGHT NOW</span><h2>You set the pace.</h2><p>Speech, pointing, signs, and AAC all count. You can stop whenever you want.</p><p class="small">No timers. No scores. No pressure.</p></aside>
+      </div>
+      <div class="workspace-heading"><div><p class="eyebrow">MY COMMUNICATION BOARD</p><h2>What would you like to say?</h2></div><button id="print-board" class="quiet-button">Print board</button></div>
+      <p class="small">Select a category or add a card to your message. Essential choices stay available.</p>
+      <div id="categories" class="filters" role="group" aria-label="Card categories"></div>
+      <div id="board-cards" class="card-grid" aria-label="Communication cards"></div>
+      <section class="message-panel" aria-labelledby="message-title">
+        <div class="row"><h2 id="message-title">My message</h2><span id="message-count" class="small">0 of 12 cards</span></div>
+        <p class="small">Cards use their short labels here, so you can combine them your way. Select a message card to remove it.</p>
+        <div id="message-strip" class="message-strip"></div>
+        <div class="button-row"><button id="say-message" class="primary-button">Say message</button><button id="copy-message" class="quiet-button">Copy message</button><button id="undo-message" class="quiet-button">Undo last</button><button id="clear-message" class="quiet-button">Clear</button></div>
+        <p id="speech-status" class="small">Audio is off. A caregiver can enable an available on-device voice.</p>
+      </section>
+    </section>
+    {% include "practice.html" %}
+    {% include "caregiver.html" %}
+    <section id="page-writing" hidden aria-labelledby="writing-title">
+      <p class="eyebrow">A SPACE FOR WORDS</p><h1 id="writing-title">Make room for your message.</h1>
+      <p>Highlight words you choose to practice. This does not predict how easy or hard speech will be.</p>
+      <form id="writing-form" class="panel stack">
+        <label for="writing-text">Your writing</label><textarea id="writing-text" maxlength="5000" rows="7" required placeholder="Write something you would like to share."></textarea>
+        <label for="practice-words">Words you would like to notice</label><input id="practice-words" maxlength="500" required placeholder="For example: play, book">
+        <button class="primary-button" type="submit">Highlight my words</button>
+      </form>
+      <div id="writing-result" class="panel" aria-live="polite"></div>
+      <p class="small">Writing is sent only to this device's app and is not saved. Avoid personal information on shared devices.</p>
+    </section>
+    {% include "about.html" %}
+  </main>
+  <footer><span>Fluent / Small moments. Meaningful connection.</span><span>Support, not diagnosis. Built for your pace.</span></footer>
+  <div id="status" class="status" role="status" aria-live="polite" aria-atomic="true"></div>
+  <div id="error" class="error-banner" role="alert" hidden><span id="error-text"></span><button id="dismiss-error">Dismiss</button></div>
+  <dialog id="break-dialog" aria-labelledby="break-title">
+    <p class="eyebrow">NOTHING TO FINISH. NOWHERE TO RUSH.</p><h2 id="break-title">Let's pause.</h2>
+    <p>You can rest, move, find a quiet space, or leave the app. You do not have to come back right now.</p>
+    <button id="end-break" class="primary-button">Return when ready</button>
+  </dialog>
+  <noscript><p class="notice">JavaScript is needed for the communication board. No data is saved unless a caregiver enables it.</p></noscript>
+</body>
+</html>
