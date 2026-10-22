@@ -1,0 +1,115 @@
+{
+  "artifacts": {
+    "default_content.txt": {
+      "bytes": 8760,
+      "payload_loaded": false,
+      "sha256": "21ea24c59d1d764c08096e7ab86eb3e4b474d427f781e3addce28a8b84dfe705"
+    },
+    "notebook/TED_transcript_tokens.npy": {
+      "bytes": 23181548,
+      "dtype": "|O",
+      "format_version": [
+        1,
+        0
+      ],
+      "fortran_order": false,
+      "payload_loaded": false,
+      "sha256": "d80780d47258e49cbef863468b1387bbb18905f8b7498083d8d638c9f31f2cdb",
+      "shape": [
+        2467
+      ],
+      "warning": "Object arrays may contain pickle payloads. Header only; never loaded."
+    },
+    "notebook/res.pickle": {
+      "bytes": 1763976,
+      "payload_loaded": false,
+      "sha256": "cfc5e363cd2101edc6d7fb6b5d936e672c92bf9ca143299c65fb4d81fb8e003c",
+      "warning": "Legacy executable serialization; not unpickled."
+    },
+    "notebook/res2.pickle": {
+      "bytes": 1323010,
+      "payload_loaded": false,
+      "sha256": "411759609639baff6a04e6e7dd5909cf23c34bd6ce7ea15b4559d4209c413c1e",
+      "warning": "Legacy executable serialization; not unpickled."
+    },
+    "phonetic_embd.pickle": {
+      "bytes": 54117014,
+      "format": "Python pickle (identified by extension)",
+      "payload_loaded": false,
+      "sha256": "558ec9fd788e81dd78952f2beb33c370ff20febf029bb45c7649ebf0cb145149",
+      "warning": "Executable serialization; provenance and contents not verified."
+    },
+    "word_embeddings/glove.wikipedia.bin": {
+      "bytes": 60399659,
+      "declared_dimensions": 300,
+      "declared_vocabulary": 50000,
+      "format": "binary embedding candidate",
+      "payload_loaded": false,
+      "sha256": "abc774f42e26154692b8787d0598fe71b57c520c01f901c78d09c7ed1d611dad",
+      "warning": "Header declarations only; binary rows and finiteness not verified."
+    }
+  },
+  "datasets": {
+    "TED_transcripts.csv": {
+      "bytes": 28531064,
+      "characters": {
+        "max": 51355,
+        "median": 11539,
+        "min": 17,
+        "p95": 19511
+      },
+      "columns": [
+        "transcript",
+        "url"
+      ],
+      "duplicate_normalized_transcript_rows": 3,
+      "duplicate_url_rows": 3,
+      "empty_transcripts": 0,
+      "invalid_urls": 0,
+      "limitations": [
+        "Regex tokens are not linguistic or clinical annotations.",
+        "No age, diagnosis, consent, speaker-group, audio, or outcome columns are provided.",
+        "Non-ASCII text does not establish language or quality.",
+        "No content-safety or reading-level certification was performed."
+      ],
+      "malformed_rows": 0,
+      "regex_tokens": {
+        "max": 9176,
+        "median": 2058,
+        "min": 2,
+        "p95": 3571
+      },
+      "rows": 2467,
+      "rows_with_non_ascii": 2262,
+      "sha256": "f50d44ef95a3cbf6817aad6466c12c2a2c1e60965111d98f6c3865ff77764029",
+      "url_domains": {
+        "www.ted.com": 2467
+      }
+    },
+    "cmudict-0.7b-simvecs": {
+      "alternate_pronunciation_labels": 8779,
+      "bytes": 65090704,
+      "dimensions": {
+        "50": 133859
+      },
+      "duplicate_label_rows": 0,
+      "invalid_utf8_lines": 1,
+      "limitations": [
+        "Numeric vectors, not child speech audio or therapeutic labels.",
+        "Filename alone does not establish upstream provenance, license, or embedding methodology.",
+        "Labels are compared as raw bytes; invalid UTF-8 is counted, not silently repaired."
+      ],
+      "malformed_rows": 0,
+      "nonfinite_rows": 0,
+      "norm_max": 12.651953,
+      "norm_min": 3.718455,
+      "rows": 133859,
+      "sha256": "611d2e6773e5fd25634bb52df0adc75fde027a00ab1a7175e8cdbd2bc4689241",
+      "unique_labels": 133859,
+      "zero_vectors": 0
+    }
+  },
+  "method": "Read-only streaming aggregate inspection; SHA-256 inventory; no unpickling or model execution.",
+  "runtime_uses_legacy_data": false,
+  "schema_version": 1
+}
