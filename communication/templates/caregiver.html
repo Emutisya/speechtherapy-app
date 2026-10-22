@@ -1,0 +1,45 @@
+<section id="page-caregiver" hidden aria-labelledby="caregiver-title">
+  <p class="eyebrow">SUPPORT THE PERSON, NOT A SCORE</p><h1 id="caregiver-title">A thoughtful space for caregivers.</h1>
+  <p>Start without an account. Saving is optional. All local spaces are visible to everyone using this browser and device; this is not a password-protected clinical record.</p>
+  <div class="two-columns">
+    <section class="panel" aria-labelledby="spaces-title">
+      <h2 id="spaces-title">Local spaces</h2><p class="small">Use a nickname, not a child's full name or date of birth.</p>
+      <label for="profile-select">Current space</label><select id="profile-select"><option value="">No saved space</option></select>
+      <p id="consent-status" class="small">Nothing is being saved.</p>
+      <form id="profile-form" class="stack"><label for="profile-alias">New space label</label><input id="profile-alias" maxlength="40" required placeholder="For example: Sunflower">
+        <label class="check-label"><input id="profile-consent" type="checkbox">I am the responsible caregiver and choose to save observations on this device.</label>
+        <button type="submit" class="primary-button">Create local space</button>
+      </form>
+    </section>
+    <section class="panel" aria-labelledby="preferences-title">
+      <h2 id="preferences-title">Make it comfortable</h2>
+      <form id="preferences-form" class="stack">
+        <label for="theme-select">Appearance</label><select id="theme-select"><option value="system">Follow device</option><option value="light">Light</option><option value="dark">Dark</option></select>
+        <label class="check-label"><input id="large-text" type="checkbox">Larger text</label>
+        <label class="check-label"><input id="reduced-choices" type="checkbox">Fewer choices at once (all cards still available)</label>
+        <label class="check-label"><input id="speech-enabled" type="checkbox">Enable optional on-device speech</label>
+        <p class="small">Only voices reported as local by your browser are offered. No microphone is used. Check your operating system's speech privacy settings.</p>
+        <label for="voice-select">On-device voice (English)</label><select id="voice-select"><option value="">Checking available voices...</option></select>
+        <label for="speech-rate">Speaking pace</label><select id="speech-rate"><option value="gentle">Gentle</option><option value="regular">Regular</option></select>
+        <button class="primary-button" type="submit">Apply preferences</button>
+        <p class="small">Without a saved space, preferences last for this page only.</p>
+      </form>
+    </section>
+  </div>
+  <section class="panel" aria-labelledby="progress-title">
+    <div class="workspace-heading"><div><p class="eyebrow">NOTICING, NOT MEASURING</p><h2 id="progress-title">Communication moments</h2></div><button id="refresh-progress" class="quiet-button">Refresh</button></div>
+    <p>Observations describe opportunities and communication modes. More observations do not mean better speech. Dates below use your local time; exports use UTC.</p>
+    <div id="progress-summary" class="metrics"></div><div id="mode-summary" class="mode-summary"></div>
+    <div class="table-scroll"><table><caption>Most recent 100 observations in this space</caption><thead><tr><th scope="col">Activity</th><th scope="col">Way of communicating</th><th scope="col">Support</th><th scope="col">Comfort</th><th scope="col">When</th><th scope="col">Action</th></tr></thead><tbody id="progress-rows"></tbody></table></div>
+    <div class="button-row"><a id="export-json" class="button-link" href="/api/export?format=json">Download JSON</a><a id="export-csv" class="button-link" href="/api/export?format=csv">Download CSV</a></div>
+    <p class="small">Downloads leave the app's control. Store them securely and delete them when no longer needed.</p>
+  </section>
+  <section class="panel danger-zone" aria-labelledby="privacy-title">
+    <h2 id="privacy-title">Your data, your choice</h2>
+    <label class="check-label"><input id="storage-consent" type="checkbox">Save observations for the selected space</label>
+    <p class="small">Turning this off immediately deletes that space's saved observations. The space label and preferences remain.</p>
+    <button id="update-consent" class="quiet-button">Update storage choice</button>
+    <form id="clear-progress-form" class="stack"><label for="clear-confirmation">Type CLEAR to delete this space's observations</label><input id="clear-confirmation" autocomplete="off" required><button type="submit" class="quiet-button">Clear observations</button></form>
+    <form id="delete-profile-form" class="stack"><label for="delete-confirmation">Type DELETE to remove this space and all its observations</label><input id="delete-confirmation" autocomplete="off" required><button type="submit" class="danger-button">Delete selected space</button></form>
+  </section>
+</section>
