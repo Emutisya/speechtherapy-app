@@ -1,0 +1,10 @@
+[project]
+name = "fluent-communication"
+version = "0.2.0"
+description = "Local-first, caregiver-supported communication and optional practice"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-q"

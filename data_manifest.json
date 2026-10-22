@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "policy": "Legacy research artifacts are excluded from the application runtime. No new dataset redistribution is authorized by this manifest.",
+  "legacy_datasets": [
+    {
+      "path": "data/TED_transcripts.csv",
+      "role": "Adult talk transcript corpus in the original writing prototype",
+      "provenance": "Bundled with the original repository; exact release and collection method undocumented",
+      "license_status": "No dataset-specific license or redistribution permission established",
+      "child_runtime_eligible": false,
+      "missing_evidence": ["Child suitability review", "Speech audio", "Speaker demographics", "Clinical labels", "Consent documentation"]
+    },
+    {
+      "path": "data/cmudict-0.7b-simvecs",
+      "role": "Text-form numeric phonetic embedding candidate",
+      "provenance": "Name suggests CMU-derived vocabulary, but derivation and upstream version are unverified",
+      "license_status": "Exact upstream and derived-data license chain unverified",
+      "child_runtime_eligible": false,
+      "missing_evidence": ["Generation procedure", "License chain", "Target-population evaluation"]
+    },
+    {
+      "path": "data/phonetic_embd.pickle",
+      "role": "Legacy serialized phonetic lookup used by the original SVM writing prototype",
+      "provenance": "Bundled Python pickle; not executed or deserialized",
+      "license_status": "Unverified",
+      "child_runtime_eligible": false,
+      "missing_evidence": ["Safe non-executable format", "Documented provenance", "Validation"]
+    },
+    {
+      "path": "data/word_embeddings/glove.wikipedia.bin",
+      "role": "Legacy semantic binary embedding candidate",
+      "provenance": "Filename is not sufficient to verify the specific source or release",
+      "license_status": "Exact redistribution terms unverified",
+      "child_runtime_eligible": false,
+      "missing_evidence": ["License chain", "Bias assessment", "Age suitability"]
+    }
+  ],
+  "runtime_content": {
+    "paths": ["communication/content/cards.json", "communication/content/activities.json"],
+    "source": "Original manually authored starter content introduced in this branch",
+    "language": "English",
+    "clinical_validation": "Not clinically validated",
+    "required_before_clinical_use": ["Speech-language professional review", "Autistic user and caregiver co-design", "Access-method testing", "Individualized suitability assessment"]
+  }
+}

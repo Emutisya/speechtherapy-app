@@ -1,0 +1,11 @@
+@media print {
+  body { font-size: 12pt; background: var(--cp-surface); }
+  .site-header, .main-nav, footer, .hero, .filters, .message-panel, #print-board, .status, .error-banner, .skip-link, dialog { display: none !important; }
+  main { padding: 0; }
+  #page-board { display: block !important; }
+  main > section:not(#page-board) { display: none !important; }
+  .card-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8pt; }
+  .communication-card { min-height: 85pt; break-inside: avoid; border: 1pt solid var(--cp-border-strong); color: var(--cp-text); }
+  .communication-card svg { width: 24pt; height: 24pt; }
+  .communication-card.essential { border-top: 2pt solid var(--cp-accent); }
+}
