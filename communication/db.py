@@ -31,6 +31,7 @@ def get_db():
         connection = sqlite3.connect(current_app.config["DATABASE"], timeout=10)
         connection.row_factory = sqlite3.Row
         connection.execute("PRAGMA foreign_keys = ON")
+        connection.execute("PRAGMA secure_delete = ON")
         g.db = connection
     return g.db
 

@@ -36,7 +36,7 @@ export async function api(path, method = "GET", body) {
   try {
     response = await fetch(`/api${path}`, {
       method, credentials: "same-origin",
-      headers: {"Content-Type": "application/json", "X-CSRF-Token": state.csrf || ""},
+      headers: {"Content-Type": "application/json", "X-CSRF-Token": state.csrf || "", "X-Profile-ID": state.profile?.id || ""},
       ...(body === undefined ? {} : {body: JSON.stringify(body)}),
     });
   } catch {

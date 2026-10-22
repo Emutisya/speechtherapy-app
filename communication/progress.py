@@ -25,6 +25,7 @@ def record_event():
     comfort = choice(data.get("comfort", "not-recorded"), "Comfort", COMFORTS)
     connection = get_db()
     with connection:
+        connection.execute("BEGIN IMMEDIATE")
         if connection.execute("SELECT count(*) FROM events WHERE profile_id = ?", (profile["id"],)).fetchone()[0] >= 10000:
             raise Conflict("This space has reached 10,000 observations. Export and clear progress before saving more.")
         cursor = connection.execute(

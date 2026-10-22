@@ -2,7 +2,7 @@ import json
 from datetime import datetime, timezone
 from uuid import uuid4
 
-from flask import Blueprint, jsonify, session
+from flask import Blueprint, jsonify, request, session
 from werkzeug.exceptions import Conflict, NotFound
 
 from .db import get_db
@@ -20,6 +20,9 @@ def active_profile():
     row = get_db().execute("SELECT * FROM profiles WHERE id = ?", (session.get("profile_id"),)).fetchone()
     if row is None:
         raise Conflict("Choose or create a local space in Caregiver before saving progress.")
+    expected = request.headers.get("X-Profile-ID", request.args.get("profile_id"))
+    if expected is not None and expected != row["id"]:
+        raise Conflict("The selected space changed in another tab. Reload this page before viewing or saving observations.")
     return row
 
 
@@ -41,14 +44,16 @@ def create_profile():
     alias = text(data.get("alias"), "Space label")
     consent = boolean(data.get("consent"), "Progress storage consent")
     connection = get_db()
-    if connection.execute("SELECT count(*) FROM profiles").fetchone()[0] >= 12:
-        raise Conflict("This household already has 12 spaces. Delete an unused space before adding another.")
     profile_id = uuid4().hex
     with connection:
+        connection.execute("BEGIN IMMEDIATE")
+        if connection.execute("SELECT count(*) FROM profiles").fetchone()[0] >= 12:
+            raise Conflict("This household already has 12 spaces. Delete an unused space before adding another.")
         connection.execute("INSERT INTO profiles(id, alias, consent, created_at) VALUES (?, ?, ?, ?)",
                            (profile_id, alias, int(consent), now()))
     session["profile_id"] = profile_id
-    return jsonify(profile=serialize(active_profile())), 201
+    row = connection.execute("SELECT * FROM profiles WHERE id = ?", (profile_id,)).fetchone()
+    return jsonify(profile=serialize(row)), 201
 
 
 @profiles.post("/select")

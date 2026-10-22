@@ -10,6 +10,7 @@ export async function refreshProgress() {
   $("mode-summary").replaceChildren();
   for (const id of ["export-json", "export-csv"]) {
     $(id).hidden = !state.profile;
+    if (state.profile) $(id).href = `/api/export?format=${id === "export-json" ? "json" : "csv"}&profile_id=${encodeURIComponent(state.profile.id)}`;
   }
   if (!state.profile) {
     $("progress-summary").append(element("p", "No space selected. You can use the board and practice without saving."));
